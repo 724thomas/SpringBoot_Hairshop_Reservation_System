@@ -50,7 +50,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public String deleteReservationById(String reservationId) {
         try{
-            reservationRepository.deleteReservationById(Long.parseLong(reservationId));
+            reservationRepository.deleteReservationById(Integer.parseInt(reservationId));
         }catch (Exception e){
             e.printStackTrace();
             return "failed";

@@ -21,7 +21,6 @@ public class AdminPageController {
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        System.out.println(reservationService.selectAllReservation());
         model.addAttribute("reservationList", reservationService.selectAllReservation());
         return "admin";
     }

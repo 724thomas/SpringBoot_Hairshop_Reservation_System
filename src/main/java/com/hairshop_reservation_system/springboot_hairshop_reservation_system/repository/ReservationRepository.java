@@ -27,6 +27,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
             "r.memo = #{#reservation.memo}", nativeQuery = true)
     void updateReservation(@Param(value = "reservation") Reservation reservation);
 
-    @Query(value = "DELETE FROM Reservation r WHERE r.reservationid = #{#reservation.reservationid}", nativeQuery = true)
-    void deleteReservationById(@Param(value = "reservationid") Long reservationid);
+    @Query(value = "DELETE FROM Reservation r WHERE r.reservationid = #{#reservationid}", nativeQuery = true)
+    void deleteReservationById(@Param(value = "reservationid") int reservationid);
 }
