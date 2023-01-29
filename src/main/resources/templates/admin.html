@@ -5,21 +5,39 @@
   <title>메인페이지</title>
 </head>
 <body>
-<!--    <h1> 예약 현황</h1>-->
-<!--    <table border="1">-->
-<!--        <tr>-->
-<!--            <th>예약자 이메일</th>-->
-<!--            <th>예약날짜</th>-->
-<!--            <th>예약시간</th>-->
-<!--            <th>예정종료시간</th>-->
-<!--        </tr>-->
-<!--        <tr th:each=" : ${}">-->
-<!--            <td th:text="${}"></td>-->
-<!--            <td th:text="${}"></td>-->
-<!--            <td th:text="${}"></td>-->
-<!--            <td th:text="${}"></td>-->
-<!--        </tr>-->
-<!--    </table>-->
+    <h1> 예약 현황</h1>
+    <table border="1">
+        <tr>
+            <th>예약자ID</th>
+            <th>예약자명</th>
+            <th>연락처</th>
+            <th>예약날짜</th>
+            <th>예약시간</th>
+            <th>기간(분)</th>
+            <th>메모</th>
+        </tr>
+        <tr th:each=" Reservation: ${reservationList}">
+            <td th:text="${Reservation.reservationid}"></td>
+            <td th:text="${Reservation.name}"></td>
+            <td th:text="${Reservation.contact}"></td>
+            <td th:text="${Reservation.date}"></td>
+            <td th:text="${Reservation.time}"></td>
+            <td th:text="${Reservation.duration}"></td>
+            <td th:text="${Reservation.memo}"></td>\
+<!--            <td>-->
+<!--                <form action="/admin/updateReservation" method="post">-->
+<!--                    <input type="hidden" name="scheduleid" th:value="${Reservation.scheduleid}">-->
+<!--                    <input type="submit" value="수정">-->
+<!--                </form>-->
+<!--            </td>-->
+            <td>
+                <form action="/admin/deleteReservation" method="post">
+                    <input type="hidden" name="reservationid" th:value="${Reservation.getReservationid()}">
+                    <input type="submit" value="삭제">
+                </form>
+            </td>
+        </tr>
+    </table>
 
 <div class="container">
     <div class="box">

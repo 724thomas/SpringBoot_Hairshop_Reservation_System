@@ -26,8 +26,5 @@ public class UserPageController {
         return "userreservation";
     }
 
-    @GetMapping("/goAdmin")
-    public String goAdmin() {
-        return "admin";
-    }
+
 }

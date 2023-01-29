@@ -1,14 +1,28 @@
 package com.hairshop_reservation_system.springboot_hairshop_reservation_system.page.controller;
 
-import lombok.Getter;
+import com.hairshop_reservation_system.springboot_hairshop_reservation_system.service.ReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+@RequiredArgsConstructor
 @Controller
 public class AdminPageController {
 
-    @GetMapping("/goAdmin")
+    private final ReservationService reservationService;
+
+    @GetMapping("/goAdminLogin")
     public String goAdmin() {
+        return "adminlogin";
+    }
+
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        System.out.println(reservationService.selectAllReservation());
+        model.addAttribute("reservationList", reservationService.selectAllReservation());
         return "admin";
     }
 
@@ -17,18 +31,5 @@ public class AdminPageController {
         return "adminchat";
     }
 
-    @GetMapping("/admin/newReservation")
-    public String newReservation() {
-        return "adminnewreservation";
-    }
 
-    @GetMapping("/admin/deleteReservation")
-    public String deleteReservation() {
-        return "admindeletereservation";
-    }
-
-    @GetMapping("/admin/updateReservation")
-    public String updateReservation() {
-        return "adminupdatereservation";
-    }
 }

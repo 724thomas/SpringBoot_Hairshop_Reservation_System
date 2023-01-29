@@ -5,6 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-
+    <form action="/admin/newReservation" method="post">
+        <label for="name">고객명: </label>
+        <input type="text" id="name" name="Name">
+        <br>
+        <label for="contact">연락처: </label>
+        <input type="text" id="contact" name="Customer Contact">
+        <br>
+        <label for="date">예약 날짜:</label>
+        <input type="text" id="date" name="Reservation Date">
+        <br>
+        <label for="time">예약 시간:</label>
+        <input type="text" id="time" name="Reservation Time">
+        <br>
+        <label for="duration">예상 종료 시간:</label>
+        <input type="text" id="duration" name="Estimated End Time">
+        <br>
+        <label for="memo">메모: </label>
+        <input type="text" id="memo" name="Memo">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
