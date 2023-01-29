@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @RestController
 public class UserController {
@@ -15,5 +17,10 @@ public class UserController {
     @PostMapping("/users")
     public String insertUsers(UserRequest userRequest) {
         return userService.insertUsers(userRequest);
+    }
+
+    @PostMapping("/login")
+    public String loginUser(UserRequest request, HttpSession session) {
+        return userService.loginUsers(request, session);
     }
 }
