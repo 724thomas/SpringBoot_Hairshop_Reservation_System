@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>메인페이지</title>
+  <title>회원가입</title>
   <style>
     @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
     *{
@@ -19,7 +19,7 @@
     .container{
       background: #2d3e3f;
       width: 350px;
-      height: 295px;
+      height: 385px;
       padding-bottom: 20px;
       position: absolute;
       top:50%;
@@ -28,7 +28,6 @@
       margin: auto;
       padding: 70px 50px 20px 50px;
     }
-
 
     .fl{
       float: left;
@@ -104,39 +103,76 @@
 
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
+<!-- Body of Form starts -->
 <div class="container">
-    <div class="box">
-      <h1 style="font-size: 35px;color: white;">간단 사이트</h1>
-    </div>
+  <form method="post" autocomplete="on" action="signup">
 
     <div class="box">
-      <div class="fr" style="text-align: left;width: 100%; padding-bottom: 5px;">
-        <button onclick="location.href='/goSignUp'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">회원가입 페이지 이동</button>
+      <h1 style="font-size: 35px;color: white;">회원가입</h1>
+    </div>
+
+    <!---Email ID---->
+    <div class="box">
+      <label for="email" class="fl fontLabel"> 이메일: </label>
+      <div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+      <div class="fr">
+        <input type="email" required name="email" id="email" placeholder="이메일.." class="textBox">
       </div>
+      <div class="clr"></div>
     </div>
+    <!--Email ID----->
 
-
+    <!---Password------>
     <div class="box">
-      <div class="fr" style="text-align: left;width: 100%;padding-bottom: 5px;">
-        <button onclick="location.href='/goLogin'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">로그인 페이지 이동</button>
+      <label for="password" class="fl fontLabel"> 비밀번호 </label>
+      <div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>
+      <div class="fr">
+        <input type="Password" required name="password" id="password" placeholder="비밀번호.." class="textBox">
       </div>
+      <div class="clr"></div>
     </div>
+    <!---Password---->
 
-    <div class="box">
-        <div class="fr" style="text-align: left;width: 100%;padding-bottom: 5px;">
-            <button onclick="location.href='/goReservation'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">예약하기</button>
-        </div>
+    <!--Terms and Conditions------>
+    <div class="box terms">
+      <input type="checkbox" name="Terms" required> &nbsp; 약관에 동의합니다.
     </div>
+    <!--Terms and Conditions------>
 
-    <div class="box">
-        <div class="fr" style="text-align: left;width: 100%;padding-bottom: 5px;">
-            <button onclick="location.href='/goAdmin'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">관리자</button>
-        </div>
+    <!---Submit Button------>
+    <div class="box" style="background: #2d3e3f">
+      <input type="button" name="Submit" class="submit" value="등록하기" onclick="signup()">
+      <input type="button"  onclick="location.href='/'" style="margin-right: 30px;" class="submit" value="돌아가기">
     </div>
-
+    <!---Submit Button----->
+  </form>
 </div>
+<script>
+
+    function signup(){
+      $.ajax({
+        url:'/usersignup',
+        data:{email:$('#email').val(),
+          password:$('#password').val()
+        },
+        type:'POST',
+        success:function(resp){
+          if(resp=='success'){
+
+            alert("회원가입 성공");
+            location.href="/";
+          } else{
+            alert("회원가입 정보를 확인해주세요.");
+          }
+        }
+      });
+    }
+
+
+</script>
+<!--Body of Form ends--->
 </body>
 </html>

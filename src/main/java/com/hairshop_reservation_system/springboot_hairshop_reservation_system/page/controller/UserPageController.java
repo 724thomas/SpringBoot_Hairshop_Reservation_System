@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PageController {
+public class UserPageController {
 
     @GetMapping("/")
     public String index() {
@@ -13,16 +13,21 @@ public class PageController {
 
     @GetMapping("/goLogin")
     public String goLogin() {
-        return "login";
+        return "userlogin";
     }
 
     @GetMapping("/goSignUp")
     public String goSignUp() {
-        return "signup";
+        return "usersignup";
     }
 
-    @GetMapping("/goCalendar")
-    public String goCalendar() {
-        return "calendar";
+    @GetMapping("/goReservation")
+    public String goReservation() {
+        return "userreservation";
+    }
+
+    @GetMapping("/goAdmin")
+    public String goAdmin() {
+        return "admin";
     }
 }

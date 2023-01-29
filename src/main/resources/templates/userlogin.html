@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>회원가입</title>
+  <title>로그인</title>
   <style>
     @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
     *{
@@ -19,7 +19,7 @@
     .container{
       background: #2d3e3f;
       width: 350px;
-      height: 385px;
+      height: 250px;
       padding-bottom: 20px;
       position: absolute;
       top:50%;
@@ -28,6 +28,7 @@
       margin: auto;
       padding: 70px 50px 20px 50px;
     }
+
 
     .fl{
       float: left;
@@ -108,10 +109,10 @@
 <body>
 <!-- Body of Form starts -->
 <div class="container">
-  <form method="post" autocomplete="on" action="signup">
+  <form method="post" autocomplete="on">
 
     <div class="box">
-      <h1 style="font-size: 35px;color: white;">회원가입</h1>
+      <h1 style="font-size: 35px;color: white;">로그인</h1>
     </div>
 
     <!---Email ID---->
@@ -119,7 +120,7 @@
       <label for="email" class="fl fontLabel"> 이메일: </label>
       <div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
       <div class="fr">
-        <input type="email" required name="email" id="email" placeholder="이메일.." class="textBox">
+        <input type="email" required name="email" placeholder="이메일.." id="email" class="textBox">
       </div>
       <div class="clr"></div>
     </div>
@@ -130,49 +131,45 @@
       <label for="password" class="fl fontLabel"> 비밀번호 </label>
       <div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>
       <div class="fr">
-        <input type="Password" required name="password" id="password" placeholder="비밀번호.." class="textBox">
+        <input type="Password" required name="password" placeholder="비밀번호.." id="password" class="textBox">
       </div>
       <div class="clr"></div>
     </div>
     <!---Password---->
 
-    <!--Terms and Conditions------>
-    <div class="box terms">
-      <input type="checkbox" name="Terms" required> &nbsp; 약관에 동의합니다.
-    </div>
-    <!--Terms and Conditions------>
-
     <!---Submit Button------>
     <div class="box" style="background: #2d3e3f">
-      <input type="button" name="Submit" class="submit" value="등록하기" onclick="signup()">
-      <input type="button"  onclick="location.href='/'" style="margin-right: 30px;" class="submit" value="돌아가기">
+      <input type="button" name="Submit" class="submit" value="로그인하기" onclick="login()">
+      <input type="button" onclick="location.href='/'" style="margin-right: 30px;" class="submit" value="돌아가기">
     </div>
     <!---Submit Button----->
   </form>
 </div>
+<!--Body of Form ends--->
 <script>
 
-    function signup(){
-      $.ajax({
-        url:'/users',
-        data:{email:$('#email').val(),
-          password:$('#password').val()
-        },
-        type:'POST',
-        success:function(resp){
-          if(resp=='success'){
+  function login(){
+    let email=$("#email").val();
+    let password=$("#password").val();
 
-            alert("회원가입 성공");
-            location.href="/";
-          } else{
-            alert("회원가입 정보를 확인해주세요.");
-          }
-        }
-      });
-    }
-
+    $.ajax({
+      url:'/userlogin',
+      data:{'email':email,
+            'password':password
+      },
+      type:'POST',
+      success:function(resp){
+       if(resp=='success'){
+         alert("로그인 성공");
+         location.href="/";
+       } else{
+         alert("로그인 정보를 확인해주세요.");
+       }
+      }
+    });
+  }
 
 </script>
-<!--Body of Form ends--->
+
 </body>
 </html>

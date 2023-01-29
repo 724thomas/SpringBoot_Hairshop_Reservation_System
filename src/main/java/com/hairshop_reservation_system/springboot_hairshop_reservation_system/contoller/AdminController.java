@@ -10,18 +10,12 @@ import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @RestController
-public class UserController {
+public class AdminController {
 
-    private final UserService userService;
 
-    @PostMapping("/usersignup")
-    public String insertUsers(UserRequest userRequest) {
-        return userService.insertUsers(userRequest);
-    }
-
-    @PostMapping("/userlogin")
+    @PostMapping("/adminlogin")
     public String loginUser(UserRequest request, HttpSession session) {
-        if (userService.loginUsers(request, session).equals ("success")) {
+        if (request.getEmail() == "admin@admin" && request.getPassword() == "admin") {
             session.setAttribute("user", request.getEmail());
             return "success";
         } else {
