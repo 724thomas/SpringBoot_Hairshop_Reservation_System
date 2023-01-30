@@ -39,7 +39,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public String updateReservation(ReservationRequest reservationRequest) {
         try{
-            reservationRepository.findAll();
+            reservationRepository.updateReservation(reservationRequest.toEntity());
         }catch (Exception e){
             e.printStackTrace();
             return "failed";

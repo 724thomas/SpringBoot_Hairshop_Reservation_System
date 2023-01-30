@@ -13,6 +13,7 @@ import lombok.ToString;
 @ToString
 public class ReservationRequest {
 
+    private String reservationid;
     private String name;
     private String contact;
     private String date;
@@ -22,6 +23,7 @@ public class ReservationRequest {
 
     public Reservation toEntity(){
         return Reservation.builder()
+                .reservationid(this.reservationid)
                 .name(this.name)
                 .contact(this.contact)
                 .date(this.date)

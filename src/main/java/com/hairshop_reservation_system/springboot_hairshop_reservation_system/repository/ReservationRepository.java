@@ -20,14 +20,15 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
     ArrayList<Reservation> findAllReservation();
 
     @Transactional
+    @Modifying
     @Query(value = "UPDATE Reservation r SET" +
-            "r.reservationid = #{#reservation.reservationid},"+
             "r.name = #{#reservation.name},"+
             "r.contact = #{#reservation.contact},"+
             "r.date = #{#reservation.date},"+
             "r.time = #{#reservation.time},"+
             "r.duration = #{#reservation.duration},"+
-            "r.memo = #{#reservation.memo}", nativeQuery = true)
+            "r.memo = #{#reservation.memo}"+
+            "WHERE reservationid = :reservation.reservationid}", nativeQuery = true)
     void updateReservation(@Param(value = "reservation") Reservation reservation);
 
     @Transactional

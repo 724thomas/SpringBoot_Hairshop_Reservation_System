@@ -1,5 +1,6 @@
 package com.hairshop_reservation_system.springboot_hairshop_reservation_system.page.controller;
 
+import com.hairshop_reservation_system.springboot_hairshop_reservation_system.dto.ReservationRequest;
 import com.hairshop_reservation_system.springboot_hairshop_reservation_system.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,11 @@ public class AdminPageController {
         System.out.println("A");
         return "redirect:/admin/";
     }
+    @PostMapping("/admin/updateReservation")
+    public String updateReservation(ReservationRequest request) {
+        reservationService.updateReservation(request);
+        return "adminupdatereservation";
+    }
 
     @PostMapping("/admin/deleteReservation")
     public String deleteReservation(@RequestParam("reservationid") String reservationId) {
@@ -43,9 +49,5 @@ public class AdminPageController {
         return "redirect:/admin/";
     }
 
-    @GetMapping("/admin/updateReservation")
-    public String updateReservation() {
-        return "adminupdatereservation";
-    }
 
 }
