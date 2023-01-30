@@ -9,14 +9,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "schedule")
+@Table(name = "reservation")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Reservation {
 
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "reservationid")
     private String reservationid;
     @Column(name = "name")

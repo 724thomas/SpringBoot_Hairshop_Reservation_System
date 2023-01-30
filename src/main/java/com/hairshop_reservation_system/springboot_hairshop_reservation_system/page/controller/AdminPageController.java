@@ -32,9 +32,8 @@ public class AdminPageController {
     }
 
     @PostMapping("/admin/newReservation")
-    public String newReservation(@RequestParam("Memo") String memo) {
-        System.out.println(memo);
-        System.out.println("A");
+    public String newReservation(ReservationRequest request) {
+        reservationService.insertReservation(request);
         return "redirect:/admin/";
     }
     @PostMapping("/admin/updateReservation")

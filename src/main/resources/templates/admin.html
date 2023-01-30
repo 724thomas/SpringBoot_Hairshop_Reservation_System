@@ -5,6 +5,20 @@
   <title>메인페이지</title>
 </head>
 <body>
+    <h1> 신규 예약</h1>
+    <form action="/admin/newReservation" method="post">
+        <input type="text" name="name" id="name" placeholder="예약자명..">
+        <input type="text" name="contact" id="contact" placeholder="연락처..">
+        <input type="text" name="date" id="date" placeholder="예약날짜..">
+        <input type="text" name="time" id="time"placeholder="예약시간..">
+        <input type="text" name="duration" id="duration"placeholder="기간(분)..">
+        <input type="text" name="memo" id="memo"placeholder="메모..">
+        <input type="submit" value="예약 등록">
+    </form>
+
+
+
+
     <h1> 예약 현황</h1>
     <table border="1">
         <tr>
