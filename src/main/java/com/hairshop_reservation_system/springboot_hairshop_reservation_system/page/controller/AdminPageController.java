@@ -36,10 +36,19 @@ public class AdminPageController {
         reservationService.insertReservation(request);
         return "redirect:/admin/";
     }
-    @PostMapping("/admin/updateReservation")
-    public String updateReservation(ReservationRequest request) {
-        reservationService.updateReservation(request);
+
+    @GetMapping("/admin/updateReservation")
+    public String updateReservation(String reservationid, Model model){
+        model.addAttribute("reservationList", reservationService.selectAllReservation());
+        model.addAttribute("reservation", reservationService.selectReservationById(reservationid));
         return "adminupdatereservation";
+    }
+
+    @PostMapping("/admin/updateReservation")
+    public String updateReservation(ReservationRequest request ,Model model) {
+        reservationService.updateReservation(request);
+        System.out.println(request.toString());
+        return "redirect:/admin/";
     }
 
     @PostMapping("/admin/deleteReservation")
@@ -47,6 +56,4 @@ public class AdminPageController {
         reservationService.deleteReservationById(reservationId);
         return "redirect:/admin/";
     }
-
-
 }

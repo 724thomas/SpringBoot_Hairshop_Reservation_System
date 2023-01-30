@@ -18,7 +18,7 @@ public class Reservation {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "reservationid")
-    private String reservationid;
+    private int reservationid;
     @Column(name = "name")
     private String name;
     @Column(name = "contact")

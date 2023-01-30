@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 public class ReservationResponse {
 
-    private String reservationid;
+    private int reservationid;
     private String name;
     private String contact;
     private String date;

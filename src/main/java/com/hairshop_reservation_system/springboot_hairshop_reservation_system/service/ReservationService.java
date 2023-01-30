@@ -14,6 +14,8 @@ public interface ReservationService {
 
     String insertReservation(ReservationRequest reservationRequest);
 
+    ReservationResponse selectReservationById(String reservationId);
+
     String updateReservation(ReservationRequest reservationRequest);
 
     String deleteReservationById(String reservationId);

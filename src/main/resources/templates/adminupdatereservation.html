@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="utf-8">
+  <title>메인페이지</title>
 </head>
 <body>
+    <h1>예약 수정</h1>
+    <form action="/admin/updateReservation" method="post">
+        <input type="hidden" name="reservationid" th:value="${reservation.reservationid}">
+        <input type="text" name="name" id="name" th:value="${reservation.name}">
+        <input type="text" name="contact" id="contact" th:value="${reservation.contact}">
+        <input type="text" name="date" id="date" th:value="${reservation.date}">
+        <input type="text" name="time" id="time" th:value="${reservation.time}">
+        <input type="text" name="duration" id="duration" th:value="${reservation.duration}">
+        <input type="text" name="memo" id="memo" th:value="${reservation.memo}">
+        <input type="submit" value="예약 수정">
+    </form>
 
+
+
+
+    <h1> 예약 현황</h1>
+    <table border="1">
+        <tr>
+            <th>예약ID</th>
+            <th>예약자명</th>
+            <th>연락처</th>
+            <th>예약날짜</th>
+            <th>예약시간</th>
+            <th>기간(분)</th>
+            <th>메모</th>
+        </tr>
+        <tr th:each=" Reservation: ${reservationList}">
+            <td th:text="${Reservation.reservationid}"></td>
+            <td th:text="${Reservation.name}"></td>
+            <td th:text="${Reservation.contact}"></td>
+            <td th:text="${Reservation.date}"></td>
+            <td th:text="${Reservation.time}"></td>
+            <td th:text="${Reservation.duration}"></td>
+            <td th:text="${Reservation.memo}"></td>
+        </tr>
+    </table>
+
+<div class="container">
+    <div class="box">
+      <h1 style="font-size: 35px;color: white;">간단 사이트</h1>
+    </div>
+
+    <div class="box">
+      <div class="fr" style="text-align: left;width: 100%; padding-bottom: 5px;">
+        <button onclick="location.href='/admin/goChat'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">채팅</button>
+      </div>
+    </div>
+
+
+
+
+</div>
 </body>
 </html>

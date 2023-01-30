@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class ReservationRequest {
 
-    private String reservationid;
+    private int reservationid;
     private String name;
     private String contact;
     private String date;

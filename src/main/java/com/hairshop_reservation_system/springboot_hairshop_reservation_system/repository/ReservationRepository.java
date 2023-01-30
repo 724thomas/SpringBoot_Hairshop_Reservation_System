@@ -19,21 +19,26 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
     @Query(value = "SELECT * FROM Reservation r ORDER BY r.date, r.time", nativeQuery = true)
     ArrayList<Reservation> findAllReservation();
 
-    @Transactional
-    @Query(value = "UPDATE Reservation r SET" +
-            "r.name = #{#reservation.name},"+
-            "r.contact = #{#reservation.contact},"+
-            "r.date = #{#reservation.date},"+
-            "r.time = #{#reservation.time},"+
-            "r.duration = #{#reservation.duration},"+
-            "r.memo = #{#reservation.memo}"+
-            "WHERE reservationid = :reservation.reservationid}", nativeQuery = true)
-    void updateReservation(@Param(value = "reservation") Reservation reservation);
+    @Query(value = "SELECT * FROM Reservation r WHERE r.reservationid = :reservationid", nativeQuery = true)
+    Reservation selectReservationById(@Param("reservationid") int reservationid);
+
 
     @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Reservation r SET " +
+            "r.name =:#{#reservation.name},"+
+            "r.contact =:#{#reservation.contact},"+
+            "r.date =:#{#reservation.date},"+
+            "r.time =:#{#reservation.time},"+
+            "r.duration =:#{#reservation.duration},"+
+            "r.memo =:#{#reservation.memo} "+
+            "WHERE r.reservationid =:#{#reservation.reservationid}", nativeQuery = true)
+    void updateReservation(@Param(value = "reservation") Reservation reservation);
+
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
     @Query(value = "DELETE FROM Reservation WHERE reservationid = :reservationid", nativeQuery = true)
     void deleteReservationById(@Param("reservationid") int reservationid);
 
-//    @Query(value = "DELETE FROM Reservation r WHERE r.reservationid = #{#reservationid}", nativeQuery = true)
-//    void deleteReservationById(@Param(value = "reservationid") int reservationid);
 }

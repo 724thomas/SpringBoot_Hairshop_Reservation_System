@@ -26,6 +26,12 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public ReservationResponse selectReservationById(String  reservationId){
+        return new ReservationResponse(reservationRepository.selectReservationById(Integer.parseInt(reservationId)));
+    }
+
+
+    @Override
     public String insertReservation(ReservationRequest reservationRequest) {
         try{
             reservationRepository.save(reservationRequest.toEntity());
@@ -35,6 +41,8 @@ public class ReservationServiceImpl implements ReservationService {
         }
         return "success";
     }
+
+
 
     @Override
     public String updateReservation(ReservationRequest reservationRequest) {

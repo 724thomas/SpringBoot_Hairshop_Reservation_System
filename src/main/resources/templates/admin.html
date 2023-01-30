@@ -22,7 +22,7 @@
     <h1> 예약 현황</h1>
     <table border="1">
         <tr>
-            <th>예약자ID</th>
+            <th>예약ID</th>
             <th>예약자명</th>
             <th>연락처</th>
             <th>예약날짜</th>
@@ -38,12 +38,12 @@
             <td th:text="${Reservation.time}"></td>
             <td th:text="${Reservation.duration}"></td>
             <td th:text="${Reservation.memo}"></td>\
-<!--            <td>-->
-<!--                <form action="/admin/updateReservation" method="post">-->
-<!--                    <input type="hidden" name="scheduleid" th:value="${Reservation.scheduleid}">-->
-<!--                    <input type="submit" value="수정">-->
-<!--                </form>-->
-<!--            </td>-->
+            <td>
+                <form action="/admin/updateReservation" method="get">
+                    <input type="hidden" name="reservationid" th:value="${Reservation.getReservationid()}">
+                    <input type="submit" value="수정">
+                </form>
+            </td>
             <td>
                 <form action="/admin/deleteReservation" method="post">
                     <input type="hidden" name="reservationid" th:value="${Reservation.getReservationid()}">
@@ -60,7 +60,7 @@
 
     <div class="box">
       <div class="fr" style="text-align: left;width: 100%; padding-bottom: 5px;">
-        <button onclick="location.href='/admin/goChat'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">채팅</button>
+        <button onclick="location.href='/chat'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">문의 확인하기</button>
       </div>
     </div>
 
