@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>현재 예약 현황</title>
+  <meta charset="utf-8">
+  <title>메인페이지</title>
 </head>
 <body>
+    <h1> 현재 예약 현황</h1>
+    <table border="1">
+        <tr>
+            <th>예약ID</th>
+            <th>예약자명</th>
+            <th>예약날짜</th>
+            <th>예약시간</th>
+            <th>기간(분)</th>
+        </tr>
+        <tr th:each=" Reservation: ${reservationList}">
+            <td th:text="${Reservation.reservationid}"></td>
+            <td th:text="${Reservation.name}"></td>
+            <td th:text="${Reservation.date}"></td>
+            <td th:text="${Reservation.time}"></td>
+            <td th:text="${Reservation.duration}"></td>
+
+        </tr>
+    </table>
+
+<div class="container">
+    <div class="box">
+      <h1 style="font-size: 35px;color: white;">간단 사이트</h1>
+    </div>
+
+    <div class="box">
+      <div class="fr" style="text-align: left;width: 100%; padding-bottom: 5px;">
+        <button onclick="location.href='/chat'" style="height:50px;text-align:center; font-size: 30px; width: 100%;">문의하기 (채팅)</button>
+      </div>
+    </div>
 
 
-<!--채팅 기능-->
 
 
-<!--    <h1> 예약 현황</h1>-->
-<!--    <table border="1">-->
-<!--        <tr>-->
-<!--            <th>예약자 이메일</th>-->
-<!--            <th>예약날짜</th>-->
-<!--            <th>예약시간</th>-->
-<!--            <th>예정종료시간</th>-->
-<!--        </tr>-->
-<!--        <tr th:each=" : ${}">-->
-<!--            <td th:text="${}"></td>-->
-<!--            <td th:text="${}"></td>-->
-<!--            <td th:text="${}"></td>-->
-<!--            <td th:text="${}"></td>-->
-<!--        </tr>-->
-<!--    </table>-->
+</div>
 </body>
 </html>
