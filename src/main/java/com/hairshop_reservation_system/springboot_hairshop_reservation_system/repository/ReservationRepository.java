@@ -2,10 +2,12 @@ package com.hairshop_reservation_system.springboot_hairshop_reservation_system.r
 
 import com.hairshop_reservation_system.springboot_hairshop_reservation_system.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
     @Query(value = "SELECT * FROM Reservation r ORDER BY r.date, r.time", nativeQuery = true)
     ArrayList<Reservation> findAllReservation();
 
+    @Transactional
     @Query(value = "UPDATE Reservation r SET" +
             "r.reservationid = #{#reservation.reservationid},"+
             "r.name = #{#reservation.name},"+
@@ -27,6 +30,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
             "r.memo = #{#reservation.memo}", nativeQuery = true)
     void updateReservation(@Param(value = "reservation") Reservation reservation);
 
-    @Query(value = "DELETE FROM Reservation r WHERE r.reservationid = #{#reservationid}", nativeQuery = true)
-    void deleteReservationById(@Param(value = "reservationid") int reservationid);
+    @Transactional
+    @Query(value = "DELETE FROM Reservation WHERE reservationid = :reservationid", nativeQuery = true)
+    void deleteReservationById(@Param("reservationid") int reservationid);
+
+//    @Query(value = "DELETE FROM Reservation r WHERE r.reservationid = #{#reservationid}", nativeQuery = true)
+//    void deleteReservationById(@Param(value = "reservationid") int reservationid);
 }

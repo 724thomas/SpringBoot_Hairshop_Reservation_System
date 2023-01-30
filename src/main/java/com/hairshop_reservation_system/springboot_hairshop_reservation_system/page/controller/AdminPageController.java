@@ -30,5 +30,22 @@ public class AdminPageController {
         return "adminchat";
     }
 
+    @PostMapping("/admin/newReservation")
+    public String newReservation(@RequestParam("Memo") String memo) {
+        System.out.println(memo);
+        System.out.println("A");
+        return "redirect:/admin/";
+    }
+
+    @PostMapping("/admin/deleteReservation")
+    public String deleteReservation(@RequestParam("reservationid") String reservationId) {
+        reservationService.deleteReservationById(reservationId);
+        return "redirect:/admin/";
+    }
+
+    @GetMapping("/admin/updateReservation")
+    public String updateReservation() {
+        return "adminupdatereservation";
+    }
 
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class AdminController {
 
     private final ReservationService reservationService;
@@ -27,23 +27,5 @@ public class AdminController {
         } else {
             return "failed";
         }
-    }
-
-    @PostMapping("/admin/newReservation")
-    public String newReservation(@RequestParam("Memo") String memo) {
-        System.out.println(memo);
-        System.out.println("A");
-        return "redirect:/admin/";
-    }
-
-    @PostMapping("/admin/deleteReservation")
-    public String deleteReservation(@RequestParam("reservationid") String reservationId) {
-        reservationService.deleteReservationById(reservationId);
-        return "redirect:/admin/";
-    }
-
-    @GetMapping("/admin/updateReservation")
-    public String updateReservation() {
-        return "adminupdatereservation";
     }
 }
